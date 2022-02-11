@@ -6,9 +6,8 @@ function PopUp({name,handleClose}) {
     <div className="main-box">
       <div className="popup-box">
         <h1>Thanks {name}</h1>
-        <br />
         <p>Your Data has been stored in our Database</p>
-        <button onClick={handleClose}>Close</button>
+        <button className="closeButton" onClick={handleClose}>Close</button>
       </div>
     </div>
   );

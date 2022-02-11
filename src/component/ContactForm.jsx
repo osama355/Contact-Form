@@ -3,6 +3,7 @@ import "./contactForm.css";
 import PopUp from "./PopUp";
 
 function ContactForm() {
+  const [openPop, setOpenPop] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -10,8 +11,6 @@ function ContactForm() {
     address: "",
     message: "",
   });
-
-  const [openPop, setOpenPop] = useState(false);
 
   let name, value;
   const getData = (e) => {
@@ -39,7 +38,6 @@ function ContactForm() {
         }),
       }
     );
-
     if (response) {
       setOpenPop(!openPop);
     }
@@ -57,11 +55,12 @@ function ContactForm() {
   };
 
   return (
-    <div>
-      <h1>Contact Us</h1>
+    <div className="main">
+      <h1 className="contactHeading">Contact Us</h1>
       <div>
-        <form method="POST" onSubmit={submitPost}>
+        <form className="formElement" method="POST" onSubmit={submitPost}>
           <input
+            className="formInput"
             type="name"
             name="name"
             id="name"
@@ -72,6 +71,7 @@ function ContactForm() {
             required={true}
           />
           <input
+            className="formInput"
             type="email"
             name="email"
             id="email"
@@ -82,6 +82,7 @@ function ContactForm() {
             required={true}
           />
           <input
+            className="formInput"
             type="tel"
             name="tel"
             id="tel"
@@ -92,6 +93,7 @@ function ContactForm() {
             required={true}
           />
           <input
+            className="formInput"
             type="text"
             name="address"
             id="address"
@@ -102,19 +104,24 @@ function ContactForm() {
             required={true}
           />
           <textarea
+            className="formInput"
             name="message"
             id=""
             cols="30"
-            rows="10"
+            rows="1"
             autoComplete="off"
             placeholder="Enter message"
             value={userData.message}
             onChange={getData}
             required={true}
           ></textarea>
-          <button type="submit">Submit</button>
+          <button className="submitButton" type="submit">
+            Submit
+          </button>
         </form>
-        {openPop ? <PopUp name={userData.name} handleClose={handleClose} /> : null}
+        {openPop ? (
+          <PopUp name={userData.name} handleClose={handleClose} />
+        ) : null}
       </div>
     </div>
   );
